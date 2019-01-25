@@ -37,3 +37,9 @@ Event: ({
     img: {type: String},
     description: {type: String, required: true}
 })
+
+----------------------------------------------------
+
+WIREFRAMES
+
+https://photos.app.goo.gl/SMGVWApqMF8qUcTW6
