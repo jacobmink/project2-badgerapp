@@ -24,7 +24,7 @@ User: ({
     username: {type: String, required: true, unique: true},
     password: {type: String, required: true},
     displayName: {type: String, required: true},
-    badgeList: [BadgeSchema],
+    badgeList: [BadgerSchema],
     flagged: {type: Boolean, required: true}
 })
 
