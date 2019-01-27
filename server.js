@@ -4,6 +4,10 @@ const app = express();
 const bodyParser = require('body-parser');
 const methodOverride = require('method-override');
 const usersController = require('./controllers/usersController');
+
+const authsController = require('./controllers/auths');
+
+
 const session = require('express-session');
 const MongeDBStore = require('connect-mongodb-session')(session);
 const store = new MongeDBStore({
@@ -24,7 +28,12 @@ app.use(session({
 app.use(express.static('public'));
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(methodOverride('_method'));
-app.use('/user', usersController);
+
+app.use('/users', usersController);
+app.use('/auths', authsController);
+
+
+
 
 
 app.get('/', (req,res)=>{
@@ -32,14 +41,6 @@ app.get('/', (req,res)=>{
         message: req.session.message
     });
 });
-
-
-
-
-
-
-
-
 
 
 app.listen(3000, ()=>{
