@@ -8,7 +8,7 @@ const User = require('../models/users');
 
 
 
-module.exports = router;
+
 
   
 router.route('/')
@@ -23,22 +23,22 @@ router.route('/')
             res.send(err);
         }
     })
-    // post
-    .post((req,res)=>{
-        try{
-            await User.create(req.body);
-            res.redirect('/users');
-        }catch(err){
-            res.send(err);
-        }
-    });
+    // // post
+    // .post((req,res)=>{
+    //     try{
+    //         await User.create(req.body);
+    //         res.redirect('/users');
+    //     }catch(err){
+    //         res.send(err);
+    //     }
+    // });
 
-router.route('/new')
-    .get((req,res)=>{
-            res.render('/users/new.ejs');
-    });
+// router.route('/new')
+//     .get((req,res)=>{
+//             res.render('/users/new.ejs');
+//     });
 
-router.router('/:id')
+router.route('/:id')
     // show
     .get(async (req,res)=>{
         try{
@@ -69,7 +69,7 @@ router.router('/:id')
         }
     })
 
-router.router('/:id/edit')
+router.route('/:id/edit')
     .get(async (req,res)=>{
         try{
             const foundUser = await User.findById(req.params.id);
@@ -81,3 +81,4 @@ router.router('/:id/edit')
         }
     })
 
+    module.exports = router;
