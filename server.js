@@ -3,7 +3,7 @@ const express = require('express');
 const app = express();
 const bodyParser = require('body-parser');
 const methodOverride = require('method-override');
-const userController = require('./controllers/usersController');
+const usersController = require('./controllers/usersController');
 const session = require('express-session');
 const MongeDBStore = require('connect-mongodb-session')(session);
 const store = new MongeDBStore({
@@ -24,7 +24,7 @@ app.use(session({
 app.use(express.static('public'));
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(methodOverride('_method'));
-app.use('/user', userController);
+app.use('/user', usersController);
 
 
 app.get('/', (req,res)=>{
