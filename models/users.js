@@ -6,7 +6,7 @@ const Badge   = require('./badges');
      password:      {type: String, required: true},
      email:         {type: String, required: true},
      displayName:   {type: String, required: true},
-     img:           [{type: String}],
+     img:           [{type: String, required: true}],
      about:         String,
      flagged:       {type: Boolean, required: true},
      badgeList:     [Badge.schema]
