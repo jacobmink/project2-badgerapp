@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Match Users</title>
+    </head>
+    <body>
+        <header>
+            <section>
+                <a href="/users/<%=user_id%>">Profile</a>
+                <a href="/users/">Swipe</a>
+                <a href="/users/message">Message</a>
+            </section>
+        </header>
+        <main>
+            <h1>See Your Matches</h1>
+            <ul>
+                <% for(let i = 0; i < users.length; i++) { %>
+                    <!-----Need to add filter for matched users----->
+                    <li>
+                        <a href="/users/<%=users[i]._id%>"><%=users[i].displayName%></a>
+                    </li>
+                <% } %>
+            </ul>
+        </main>
+        <footer>
+            <nav>
+                <ul>
+                    <li><a href="/">Home</a></li>
+                </ul>
+            </nav>
+        </footer>
+    </body>
+</html>

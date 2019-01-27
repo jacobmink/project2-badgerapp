@@ -2,10 +2,10 @@ const mongoose = require('mongoose');
 const Badger   = require('./badgers');
 
  const userSchema = mongoose.Schema({
-     username:      {type: String, require: true, unique: true},
-     password:      {type: String, require: true},
-     displayName:   {type: String, require: true},
-     flagged:       {type: Boolean, require: true},
+     username:      {type: String, required: true, unique: true},
+     password:      {type: String, required: true},
+     displayName:   {type: String, required: true},
+     flagged:       {type: Boolean},
      badgeList:     [Badger.schema]
  });
 

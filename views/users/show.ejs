@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%=user.displayName%></title>
+  </head>
+  <body>
+    <header>
+        <section>
+          <a href="/users/<%=user_id%>">Profile</a>
+          <a href="/users/">Swipe</a>
+          <a href="/users/message">Message</a>
+        </section>
+    </header>
+    <main>
+      <section>
+        <h1><%= user.displayName %> Profile</h1>
+        <ul>
+          <li><%= user.image %></li>
+        </ul>
+      </section>
+      <section>
+          <h3>About</h3>
+          <textarea name="about"><%=user.body%></textarea><br/>
+      </section>
+      <section>
+          <h2>Badges</h2>
+          <ul>
+              <%for(let i=0; i < user.badgeList.length; i++){%>
+                  <li><%=user.badgeList[i].title%></a></li>
+              <% } %>
+          </ul>
+      </section>
+    </main>
+    <footer>
+      <nav>
+        <ul>
+          <li><a href="/">Home</a></li>
+        </ul>
+      </nav>
+      <section>
+        <form action="/users/<%=user._id%>?_method=DELETE" method="POST">
+          <button type="submit">Delete Your Profile</button>
+        </form>
+      </section>
+      <section>
+        <a href="/users/<%=user._id%>/edit">Edit Your Profile</a>
+      </section>
+    </footer>                                 
+  </body>
+</html>
+
+
+
+
+

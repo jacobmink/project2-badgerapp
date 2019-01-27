@@ -1,11 +1,18 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Create User</title>
+        <title>Create Account</title>
     </head>
     <body>
         <header>
-            <h1>Create Your Profile</h1>
+            <section>
+                <a href="/users/<%=user_id%>">Profile</a>
+                <a href="/users/">Swipe</a>
+                <a href="/users/message">Message</a>
+            </section>
+        </header>
+        <main>
+            <h1>Create Your Account</h1>
             <nav>
                 <form action="/auths/createuser" method="POST">
                     <input type="text" name="username" placeholder="username"><br/>
@@ -14,11 +21,13 @@
                     <button type="submit">Register</button>
                 </form>
             </nav>
-        </header>
-        <nav>
-            <ul>
-                <li><a href="/">Back To Home</a></li>
-            </ul>
-        </nav>
+        </main>
+        <footer>
+            <nav>
+                <ul>
+                    <li><a href="/">Back To Home</a></li>
+                </ul>
+            </nav>
+        </footer>
     </body>
 </html>
