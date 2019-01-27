@@ -1,12 +1,16 @@
 const express = require('express');
 const router = express.Router();
+
+
 const User = require('../models/users');
 
 
 
 
-// ROUTES
 
+module.exports = router;
+
+  
 router.route('/')
     // index
     .get(async (req,res)=>{
@@ -76,3 +80,4 @@ router.router('/:id/edit')
             res.send(err);
         }
     })
+
