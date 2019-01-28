@@ -4,17 +4,28 @@ const bcrypt = require('bcryptjs');
 const User = require('../models/users');
 
 // login // signin
-router.post('/login', async(req, res) => {
-    try {
-        console.log('inside login');
-        res.render('auths/login.ejs');
-        
-    } catch (err) {
-        res.send(err);
-    }
-});
-
-
+router.route('/login')
+    .post(async(req, res) => {
+        try {
+            const foundUser = await User.findOne({'username': req.body.username});
+            if(foundUser){
+                if(bcrypt.compareSync(req.body.password, foundUser.password)){
+                    req.session.message = '';
+                    req.session.username = foundUser.username;
+                    req.session.logged = true;
+                    res.redirect(`/users/${foundUser._id}`);
+                }else{
+                    req.session.message = 'INVALID USERNAME OR PASSWORD';
+                    res.redirect('/');
+                }
+            }else{
+                req.session.message = 'INVALID USERNAME OR PASSWORD';
+                res.redirect('/');
+            }
+        } catch (err) {
+            res.send(err);
+        }
+    });
 
 // logout // signout
 
@@ -27,7 +38,6 @@ router.route('/logout')
             res.redirect('/');
         });
     });
-
 
 // registration // create account
 
