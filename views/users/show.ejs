@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="/style.css">
+    <title>Profile Page</title>
+</head>
+<body>
+    <header>
+        <h1><%= user.displayName %></h1>
+
+
+    </header>
+    <main>
+        Username: <%= user.username %> <br>
+        About: <%= user.about %> <br>
+
+
+        <a href="/users/<%= user._id %>/edit"><button>Edit profile</button></a>
+
+
+        <form action="/users/<%= user._id %>?_method=DELETE" method="POST"><button>Delete this account</button></form>
+
+    </main>
+
+    
+</body>
+</html>
