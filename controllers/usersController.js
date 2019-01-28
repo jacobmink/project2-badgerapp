@@ -17,8 +17,10 @@ router.route('/')
     .get(async (req,res)=>{
         try{
             const allUsers = await User.find({});
-            res.render('/users/index.ejs', {
-                users: allUsers
+            const loggedIn = await User.findOne({'username': req.session.username});
+            res.render('users/index.ejs', {
+                users: allUsers,
+                user: loggedIn
             });
         }catch(err){
             res.send(err);

@@ -6,18 +6,25 @@
 </head>
 <body>
     <header>
-        <h1><%= user.displayName %></h1>
+        <nav>
+            <ul>
+                <li><a href="/users/<%= user._id %>"><button>My Profile</button></a></li>
+                <li><a href="/users"><button>Start Swiping!</button></a></li>
+                <li><a href="/auths/logout"><button>Logout</button></a></li>
+            </ul>
+        </nav>
+        
 
 
     </header>
     <main>
+        <h1><%= user.displayName %></h1><br>
+        <img src="<%= user.img %>"> <br>
         Username: <%= user.username %> <br>
         About: <%= user.about %> <br>
 
 
         <a href="/users/<%= user._id %>/edit"><button>Edit profile</button></a>
-
-
         <form action="/users/<%= user._id %>?_method=DELETE" method="POST"><button>Delete this account</button></form>
 
     </main>
