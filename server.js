@@ -3,6 +3,7 @@ const express = require('express');
 const app = express();
 const bodyParser = require('body-parser');
 const methodOverride = require('method-override');
+const morgan = require('morgan');
 const usersController = require('./controllers/usersController');
 
 const authsController = require('./controllers/auths');
@@ -26,6 +27,7 @@ app.use(session({
     store: store
 }));
 app.use(express.static('public'));
+app.use(morgan('short'));
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(methodOverride('_method'));
 

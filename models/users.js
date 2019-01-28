@@ -8,7 +8,7 @@ const Badge   = require('./badges');
      displayName:   {type: String, required: true},
      img:           [{type: String, required: true}],
      about:         String,
-     flagged:       {type: Boolean, required: true},
+     flagged:       {type: Boolean},
      badgeList:     [Badge.schema]
  });
 

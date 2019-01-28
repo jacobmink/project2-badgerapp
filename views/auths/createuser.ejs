@@ -7,10 +7,13 @@
         <header>
             <h1>Create Your Profile</h1>
             <nav>
-                <form action="/auths/createuser" method="POST">
+                <%= message %>
+                <form action="/users" method="POST">
                     <input type="text" name="username" placeholder="username"><br/>
                     <input type="password" name="password" placeholder="password"><br/>
-                    <input type="text" name="displayName" value="Display Name">
+                    <input type="email" name="email" placeholder="email"><br>
+                    <input type="text" name="displayName" placeholder="Display Name"><br>
+                    <textarea name="about" placeholder="Describe yourself!"></textarea>
                     <button type="submit">Register</button>
                 </form>
             </nav>
