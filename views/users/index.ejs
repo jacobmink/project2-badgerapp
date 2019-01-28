@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="/style.css">
+    <title>Swipe City</title>
+</head>
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="/users/<%= user._id %>"><button>My Profile</button></a></li>
+                <li><a href="/users"><button>Start Swiping!</button></a></li>
+                <li><a href="/auths/logout"><button>Logout</button></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <ul>
+            <% users.forEach((user)=>{ %>
+                <li><%= user.displayName %> <br>
+                <img src="<%= user.img %>" alt=""></li>
+
+            <% }) %>
+        </ul>
+    </main>
+    
+</body>
+</html>
