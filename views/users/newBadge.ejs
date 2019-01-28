@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Create New Badge</title>
+    </head>
+    <body>
+        <header>
+            <section>
+                <a href="/users/<%=user_id%>">Profile</a>
+                <a href="/users/">Swipe</a>
+                <a href="/users/message">Message</a>
+            </section>
+        </header>
+        <main>
+            <h2>Enter Badge Title</h2>
+            <input type="text" list="badges" />
+            <datalist id="badges" name="badgeId">
+                <%for (let i = 0; i < badges.length; i++) { %>
+                    <option value="<%=badges[i]._id%>"><%=badges[i].title%></option>
+                <% } %>
+            </datalist>
+
+            <!----showing an input and textarea dynamically? after a user select or create a badge----->
+            <section>
+                <h3>Events</h3>
+                <nav>
+                    <h4>First</h4>
+                    Image:        <input type="url" name="img" placeholder="img"><br/>
+                    Description:  <textarea name="description"></textarea><br/>
+                </nav>
+                <nav>
+                    <h4>Second</h4>
+                    Image:        <input type="url" name="img" placeholder="img"><br/>
+                    Description:  <textarea name="description"></textarea><br/>
+                </nav>
+                <nav>
+                    <h4>Third</h4>
+                    Image:        <input type="url" name="img" placeholder="img"><br/>
+                    Description:  <textarea name="description"></textarea><br/>
+                </nav>
+            </section>
+        </main>
+        <footer>
+            <nav>
+                <ul>
+                    <li>Copyright</li>
+                    <li>Contacts</li>
+                    <li>Rules</li>
+                    <li>Jobs</li>
+                </ul>
+            </nav>
+        </footer>
+    </body>
+</html>

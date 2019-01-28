@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+    <head>
+    <title>Edit Profile</title>
+    </head>
+    <body>
+        <header>
+            <section>
+                <a href="/users/<%=user_id%>">Profile</a>
+                <a href="/users/">Swipe</a>
+                <a href="/users/message">Message</a>
+            </section>
+        </header>
+        <main>
+            <h2>Edit UYour Profile</h2>
+            <form action="/users/<%=user._id%>?_method=PUT" method="POST">
+                Display Name: <input type="text" name="displayName" value="<%=user.displayName%>"><br/>
+                Image: <input type="url" name="img"><br/>
+                About: <textarea name="about"></textarea>
+                <button type="submit">Update</button>
+                <a href="/users/<%=user_id%"> Cancel </a>
+            </form>
+        </main>
+        <footer>
+            <nav>
+                <ul>
+                    <li>Copyright</li>
+                    <li>Contacts</li>
+                    <li>Rules</li>
+                    <li>Jobs</li>
+                </ul>
+            </nav>
+        </footer>
+    </body>
+</html>

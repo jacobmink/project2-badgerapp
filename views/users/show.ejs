@@ -30,21 +30,28 @@
               <% } %>
           </ul>
       </section>
+      <section>
+        <nav>
+          <section>
+            <form action="/users/<%=user._id%>?_method=DELETE" method="POST">
+              <button type="submit">Delete Your Profile</button>
+            </form>
+          </section>
+          <section>
+            <a href="/users/<%=user._id%>/edit">Edit Your Profile</a>
+          </section>
+        </nav>
+      </section>
     </main>
     <footer>
       <nav>
         <ul>
-          <li><a href="/">Home</a></li>
+          <li>Copyright</li>
+          <li>Contacts</li>
+          <li>Rules</li>
+          <li>Jobs</li>
         </ul>
       </nav>
-      <section>
-        <form action="/users/<%=user._id%>?_method=DELETE" method="POST">
-          <button type="submit">Delete Your Profile</button>
-        </form>
-      </section>
-      <section>
-        <a href="/users/<%=user._id%>/edit">Edit Your Profile</a>
-      </section>
     </footer>                                 
   </body>
 </html>
