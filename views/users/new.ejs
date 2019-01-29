@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Create Account</title>
+    </head>
+    <body>
+        <header>
+            <section>
+                <a href="/users/<%=user_id%>">Profile</a>
+                <a href="/users/">Swipe</a>
+                <a href="/users/message">Message</a>
+            </section>
+        </header>
+        <main>
+            <h2>Create Your Profile</h2>
+            <form action="/users" method="POST">
+                <input type="text" name="username" placeholder="username"><br/>
+                <input type="password" name="password" placeholder="password"><br/>
+                <input type="text" name="displayName" value="Display Name"><br/>
+                <button type="submit">Login Cookie Monsta</button>
+            </form>
+        </main>
+        <footer>
+            <nav>
+                <ul>
+                    <li>Copyright</li>
+                    <li>Contacts</li>
+                    <li>Rules</li>
+                    <li>Jobs</li>
+                </ul>
+            </nav>
+        </footer>
+    </body>
+</html>
