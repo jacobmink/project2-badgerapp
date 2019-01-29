@@ -6,16 +6,10 @@ const paginate = require('paginate')({
     mongoose: mongoose
 });
 
-
 const User = require('../models/users');
 const Badge = require('../models/badges');
 
 
-
-
-
-
-  
 router.route('/')
     // index
     .get(async (req,res)=>{
