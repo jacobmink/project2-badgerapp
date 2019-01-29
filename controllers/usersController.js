@@ -80,6 +80,18 @@ router.route('/:id')
             res.send(err);
         }
     })
+    .post(async (req,res)=>{
+        try{
+            const foundUser = await User.findById(req.params.id);
+            const newBadge = await Badge.create(req.body);
+            foundUser.badgeList.push(newBadge);
+            await foundUser.save();
+            res.redirect(`/users/${req.params.id}`);
+        }catch(err){
+            res.send(err);
+        }
+        
+    })
     // update profile
     .put(async (req,res)=>{
         try{

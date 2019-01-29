@@ -8,8 +8,8 @@ router.route('/')
     .get(async (req,res)=>{
         try{
             const foundUser = await User.findById(req.userId);
-            res.render(`users/${req.userId}`, {
-                badges: foundUser.badgeList
+            res.render('users/show.ejs', {
+                user: foundUser
             });
         }catch(err){
             res.send(err);
@@ -21,7 +21,7 @@ router.route('/new')
         try{
             const foundUser = await User.findById(req.userId);
             res.render(`users/newBadge.ejs`, {
-                badgeList: foundUser.badgeList
+                user: foundUser
             })
         }catch(err){
             res.send(err);
