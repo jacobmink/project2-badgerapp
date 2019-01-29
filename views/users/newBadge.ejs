@@ -17,24 +17,24 @@
                 <h3>Events</h3>
                 <form action="/users/<%=user._id%>" method="POST">
                     <h2>Enter Badge Title</h2>
-                    <datalist id="badges" name="badgeId">
-                        <%for (let i = 0; i < allBadges.length; i++) { %>
-                            <option value="<%=allBadges[i]._id%>"><%=allBadges[i].title%></option>
+                    <select id="badges" name="title">
+                        <%for (let i = 0; i < badgeTitles.length; i++) { %>
+                            <option value="<%=badgeTitles[i]%>"><%=badgeTitles[i]%></option>
                         <% } %>
-                    </datalist>
+                        </select>
 
                     <h4>First</h4>
 
-                    Image:        <input type="url" name="img" placeholder="img"><br/>
-                    Description:  <textarea name="description"></textarea><br/>
+                    Image:        <input type="url" name="img1" placeholder="img"><br/>
+                    Description:  <textarea name="description1"></textarea><br/>
               
                     <h4>Second</h4>
-                    Image:        <input type="url" name="img" placeholder="img"><br/>
-                    Description:  <textarea name="description"></textarea><br/>
+                    Image:        <input type="url" name="img2" placeholder="img"><br/>
+                    Description:  <textarea name="description2"></textarea><br/>
                 
                     <h4>Third</h4>
-                    Image:        <input type="url" name="img" placeholder="img"><br/>
-                    Description:  <textarea name="description"></textarea><br/>
+                    Image:        <input type="url" name="img3" placeholder="img"><br/>
+                    Description:  <textarea name="description3"></textarea><br/>
 
                     <button type="submit">Submit</button>
                 </form>
