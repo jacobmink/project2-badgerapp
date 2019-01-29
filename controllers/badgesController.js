@@ -19,7 +19,8 @@ router.route('/new')
         try{
             const foundUser = await User.findById(req.userId);
             res.render(`users/newBadge.ejs`, {
-                badgeList: foundUser.badgeList
+                badges: foundUser.badgeList,
+                user: foundUser
             })
         }catch(err){
             res.send(err);
