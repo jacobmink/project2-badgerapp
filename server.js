@@ -5,7 +5,6 @@ const bodyParser = require('body-parser');
 const methodOverride = require('method-override');
 const morgan = require('morgan');
 const usersController = require('./controllers/usersController');
-
 const authsController = require('./controllers/auths');
 
 
