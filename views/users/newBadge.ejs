@@ -15,7 +15,7 @@
             <h2>Enter Badge Title</h2>
             <input type="text" list="badges" />
             <datalist id="badges" name="badgeId">
-                <%for (let i = 0; i < badges.length; i++) { %>
+                <%for (let i = 0; i < user.badgeList.length; i++) { %>
                     <option value="<%=badges[i]._id%>"><%=badges[i].title%></option>
                 <% } %>
             </datalist>
