@@ -20,9 +20,10 @@ router.route('/new')
     .get(async (req,res)=>{
         try{
             const foundUser = await User.findById(req.userId);
+            const allBadges = await Badge.find({});
             res.render(`users/newBadge.ejs`, {
-              
-                user: foundUser
+                user: foundUser,
+                allBadges: allBadges
             })
         }catch(err){
             res.send(err);
