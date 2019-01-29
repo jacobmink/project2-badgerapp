@@ -79,18 +79,19 @@ router.route('/:id')
         console.log(req.body)
         try{
             const foundUser = await User.findById(req.params.id);
-            const newBadge = await Badge.create({
-                title: req.body.title,
-                events: [await EventModel.create({
+            const eventsList = await Promise.all(
+                EventModel.create({
                     img: req.body.img1,
                     description: req.body.description1}),
-                await EventModel.create({
+                EventModel.create({
                     img: req.body.img2,
-                    description: req.body.description2
-                }), await EventModel.create({
+                    description: req.body.description2}),
+                EventModel.create({
                     img: req.body.img3,
-                    description: req.body.description3
-                })]
+                    description: req.body.description3}));
+            const newBadge = await Badge.create({
+                title: req.body.title,
+                events: eventsList
             });
             foundUser.badgeList.push(newBadge);
             await foundUser.save();
