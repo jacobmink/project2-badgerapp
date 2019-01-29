@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="/style.css">
+    <title>Filter Page</title>
+</head>
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="/users/<%= user._id %>"><button>My Profile</button></a></li>
+                <li><a href="/users"><button>Start Swiping!</button></a></li>
+                <li><a href="/auths/logout"><button>Logout</button></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <h1>Filter Page</h1>
+
+        
+        <form action="">
+            <h2>Gender:</h2>
+            <input type="checkbox" name="gender" value="Male"> Male<br>
+            <input type="checkbox" name="gender" value="Female"> Female<br>
+            <input type="checkbox" name="gender" value="Other" checked> Other<br><br>
+
+            <h2>Age: </h2>
+            <select>
+                <% for(let i = 0; i < 100; i++) { %>
+                     <option value="i"><%=i%></option>
+                <% } %>
+            </select>
+            <small>-</small>
+            <select>
+                <% for(let i = 0; i < 100; i++) { %>
+                    <option value="i"><%=i%></option>
+                <% } %>
+            </select>
+
+            <h3>Badges</h3>
+            <% for(let i = 0; i < badges.length; i++) { %>
+                 <option value="<%=badges[i]._id%>"><%=badges[i].title%></option>
+            <% } %>
+            <input type="submit" value="Submit">
+        </form>
+        
+
+        
+    </main>
+    <footer>
+      <nav>
+        <ul>
+          <li>Copyright</li>
+          <li>Contacts</li>
+          <li>Rules</li>
+          <li>Jobs</li>
+        </ul>
+      </nav>
+    </footer>            
+
+    
+</body>
+</html>
