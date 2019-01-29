@@ -22,21 +22,22 @@
 
             <section>
                 <h3>Events</h3>
-                <nav>
+                <form action="/users/<%=user._id%>/badges" method="POST">
                     <h4>First</h4>
+
                     Image:        <input type="url" name="img" placeholder="img"><br/>
                     Description:  <textarea name="description"></textarea><br/>
-                </nav>
-                <nav>
+              
                     <h4>Second</h4>
                     Image:        <input type="url" name="img" placeholder="img"><br/>
                     Description:  <textarea name="description"></textarea><br/>
-                </nav>
-                <nav>
+                
                     <h4>Third</h4>
                     Image:        <input type="url" name="img" placeholder="img"><br/>
                     Description:  <textarea name="description"></textarea><br/>
-                </nav>
+
+                    <button type="submit">Submit</button>
+                </form>
             </section>
         </main>
         <footer>
