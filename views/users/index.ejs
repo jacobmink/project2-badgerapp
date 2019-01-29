@@ -1,36 +1,28 @@
 <!DOCTYPE html>
-<html>
-    <head>
-        <title>Match Users</title>
-    </head>
-    <body>
-        <header>
-            <section>
-                <a href="/users/<%=user_id%>">Profile</a>
-                <a href="/users/">Swipe</a>
-                <a href="/users/message">Message</a>
-            </section>
-        </header>
-        <main>
-            <h1>See Your Matches</h1>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="/style.css">
+    <title>Swipe City</title>
+</head>
+<body>
+    <header>
+        <nav>
             <ul>
-                <% for(let i = 0; i < users.length; i++) { %>
-                    <!-----Need to add filter for matched users----->
-                    <li>
-                        <a href="/users/<%=users[i]._id%>"><%=users[i].displayName%></a>
-                    </li>
-                <% } %>
+                <li><a href="/users/<%= user._id %>"><button>My Profile</button></a></li>
+                <li><a href="/users"><button>Start Swiping!</button></a></li>
+                <li><a href="/auths/logout"><button>Logout</button></a></li>
             </ul>
-        </main>
-        <footer>
-            <nav>
-                <ul>
-                    <li>Copyright</li>
-                    <li>Contacts</li>
-                    <li>Rules</li>
-                    <li>Jobs</li>
-                </ul>
-            </nav>
-        </footer>
-    </body>
+        </nav>
+    </header>
+    <main>
+        <ul>
+            <% users.forEach((user)=>{ %>
+                <li><%= user.displayName %> <br>
+                <img src="<%= user.img %>" alt=""></li>
+
+            <% }) %>
+        </ul>
+    </main>
+    
+</body>
 </html>

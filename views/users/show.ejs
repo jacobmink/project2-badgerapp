@@ -1,47 +1,32 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <title><%=user.displayName%></title>
-  </head>
-  <body>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="/style.css">
+    <title>Profile Page</title>
+</head>
+<body>
     <header>
-        <section>
-          <a href="/users/<%=user_id%>">Profile</a>
-          <a href="/users/">Swipe</a>
-          <a href="/users/message">Message</a>
-        </section>
+        <nav>
+            <ul>
+                <li><a href="/users/<%= user._id %>"><button>My Profile</button></a></li>
+                <li><a href="/users"><button>Start Swiping!</button></a></li>
+                <li><a href="/auths/logout"><button>Logout</button></a></li>
+            </ul>
+        </nav>
+        
+
+
     </header>
     <main>
-      <section>
-        <h1><%= user.displayName %> Profile</h1>
-        <ul>
-          <li><%= user.image %></li>
-        </ul>
-      </section>
-      <section>
-          <h3>About</h3>
-          <textarea name="about"><%=user.body%></textarea><br/>
-      </section>
-      <section>
-          <h2>Badges</h2>
-          <ul>
-              <%for(let i=0; i < user.badgeList.length; i++){%>
-                  <li><%=user.badgeList[i].title%></a></li>
-              <% } %>
-          </ul>
-      </section>
-      <section>
-        <nav>
-          <section>
-            <form action="/users/<%=user._id%>?_method=DELETE" method="POST">
-              <button type="submit">Delete Your Profile</button>
-            </form>
-          </section>
-          <section>
-            <a href="/users/<%=user._id%>/edit">Edit Your Profile</a>
-          </section>
-        </nav>
-      </section>
+        <h1><%= user.displayName %></h1><br>
+        <img src="<%= user.img %>"> <br>
+        Username: <%= user.username %> <br>
+        About: <%= user.about %> <br>
+
+
+        <a href="/users/<%= user._id %>/edit"><button>Edit profile</button></a>
+        <form action="/users/<%= user._id %>?_method=DELETE" method="POST"><button>Delete this account</button></form>
+
     </main>
     <footer>
       <nav>
@@ -52,11 +37,8 @@
           <li>Jobs</li>
         </ul>
       </nav>
-    </footer>                                 
-  </body>
+    </footer>            
+
+    
+</body>
 </html>
-
-
-
-
-
