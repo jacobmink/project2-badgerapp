@@ -8,6 +8,7 @@ const paginate = require('paginate')({
 
 const User = require('../models/users');
 const Badge = require('../models/badges');
+const EventModel = require('../models/events');
 
 
 router.route('/')
@@ -73,6 +74,31 @@ router.route('/:id')
         }catch(err){
             res.send(err);
         }
+    })
+    .post(async (req,res)=>{
+        console.log(req.body)
+        try{
+            const foundUser = await User.findById(req.params.id);
+            const newBadge = await Badge.create({
+                title: req.body.title,
+                events: [await EventModel.create({
+                    img: req.body.img1,
+                    description: req.body.description1}),
+                await EventModel.create({
+                    img: req.body.img2,
+                    description: req.body.description2
+                }), await EventModel.create({
+                    img: req.body.img3,
+                    description: req.body.description3
+                })]
+            });
+            foundUser.badgeList.push(newBadge);
+            await foundUser.save();
+            res.redirect(`/users/${req.params.id}`);
+        }catch(err){
+            res.send(err);
+        }
+        
     })
     // update profile
     .put(async (req,res)=>{
