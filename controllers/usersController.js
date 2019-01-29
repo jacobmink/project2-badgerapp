@@ -1,6 +1,9 @@
 const express = require('express');
 const router = express.Router();
 const bcrypt = require('bcryptjs');
+const paginate = require('paginate')({
+    mongoose: mongoose
+});
 
 
 const User = require('../models/users');
@@ -25,7 +28,8 @@ router.route('/')
         }catch(err){
             res.send(err);
         }
-    })
+    }).paginate()
+
     // post
     .post(async (req,res)=>{
         const password = req.body.password;

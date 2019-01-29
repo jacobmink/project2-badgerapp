@@ -5,8 +5,8 @@ const bodyParser = require('body-parser');
 const methodOverride = require('method-override');
 const morgan = require('morgan');
 const usersController = require('./controllers/usersController');
-
 const authsController = require('./controllers/auths');
+const badgesController = require('./controllers/badgesController');
 
 
 const session = require('express-session');
@@ -33,6 +33,10 @@ app.use(methodOverride('_method'));
 
 app.use('/users', usersController);
 app.use('/auths', authsController);
+app.use('/users/:id/badges', (req,res,next)=>{
+    req.userId = req.params.id;
+    next();
+}, badgesController);
 
 
 
