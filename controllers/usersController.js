@@ -77,9 +77,9 @@ router.route('/:id')
     .post(async (req,res)=>{
         try{
             const foundUser = await User.findById(req.params.id);
-            const newBadge = await Badge.create({
-                title:
-            });
+            // const newBadge = await Badge.create({
+            //     title:
+            // });
             foundUser.badgeList.push(newBadge);
             await foundUser.save();
             res.redirect(`/users/${req.params.id}`);

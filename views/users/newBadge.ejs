@@ -12,17 +12,17 @@
             </section>
         </header>
         <main>
-            <h2>Enter Badge Title</h2>
-            <input type="text" list="badges">
-            <datalist id="badges" name="badgeId">
-                <%for (let i = 0; i < user.badgeList.length; i++) { %>
-                    <option value="<%=badges[i]._id%>"><%=badges[i].title%></option>
-                <% } %>
-            </datalist>
 
             <section>
                 <h3>Events</h3>
                 <form action="/users/<%=user._id%>" method="POST">
+                    <h2>Enter Badge Title</h2>
+                    <datalist id="badges" name="badgeId">
+                        <%for (let i = 0; i < allBadges.length; i++) { %>
+                            <option value="<%=allBadges[i]._id%>"><%=allBadges[i].title%></option>
+                        <% } %>
+                    </datalist>
+
                     <h4>First</h4>
 
                     Image:        <input type="url" name="img" placeholder="img"><br/>
