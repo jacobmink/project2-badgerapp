@@ -2,16 +2,10 @@ const express = require('express');
 const router = express.Router();
 const bcrypt = require('bcryptjs');
 
-
 const User = require('../models/users');
 const Badge = require('../models/badges');
 
 
-
-
-
-
-  
 router.route('/')
     // index
     .get(async (req,res)=>{
