@@ -1,4 +1,5 @@
 const express = require('express');
+const mongoose = require('mongoose');
 const router = express.Router();
 const bcrypt = require('bcryptjs');
 const paginate = require('paginate')({
@@ -28,7 +29,7 @@ router.route('/')
         }catch(err){
             res.send(err);
         }
-    }).paginate()
+    })
 
     // post
     .post(async (req,res)=>{
