@@ -9,24 +9,36 @@
         <h1>Edit User Profile</h1>
     </header>
     <main>
-        <form action="/users/<%= user._id %>?_method=PUT" method="POST">
-            Username: <input type="text" name="username" value="<%= user.username %>"><br/>
-            Password: <input type="password" name="password" value="<%= user.password %>"><br/>
-            Email: <input type="email" name="email" value="<%= user.email %>"><br>
+        <section class="edit-form">
+            <form action="/users/<%= user._id %>?_method=PUT" method="POST">
+                Username: <input type="text" name="username" value="<%= user.username %>"><br/>
+                Password: <input type="password" name="password" value="<%= user.password %>"><br/>
+                Email: <input type="email" name="email" value="<%= user.email %>"><br>
 
-            Gender: <select name="gender">
-                    <% for(let i = 0; i < genderList.length; i++){ %>
-                        <option value="<%= genderList[i] %>"><%= genderList[i] %></option>
-                    <% } %>
-                    </select><br>
+                Gender: <select name="gender">
+                        <% for(let i = 0; i < genderList.length; i++){ %>
+                            <option value="<%= genderList[i] %>"><%= genderList[i] %></option>
+                        <% } %>
+                        </select><br>
 
-            Age: <input type="text" name="age" value="<%= user.age %>"><br>
-            Display Name: <input type="text" name="displayName" value="<%= user.displayName %>"><br>
-            About: <textarea name="about"><%= user.about %></textarea><br>
-            Photo: <input type="text" name="img" value="<%= user.img %>">
-            <button type="submit">Update Profile</button>
-        </form>
+                Age: <input type="text" name="age" value="<%= user.age %>"><br>
+                Display Name: <input type="text" name="displayName" value="<%= user.displayName %>"><br>
+                About: <textarea name="about"><%= user.about %></textarea><br>
+                Photo: <input type="text" name="img" value="<%= user.img %>">
+                <button type="submit">Update Profile</button>
+            </form>
+        </section>
     </main>
+    <footer>
+        <nav>
+            <ul>
+            <li>Copyright</li>
+            <li>Contacts</li>
+            <li>Rules</li>
+            <li>Jobs</li>
+            </ul>
+        </nav>
+    </footer>   
     
 </body>
 </html>

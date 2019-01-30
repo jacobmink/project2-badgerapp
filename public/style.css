@@ -3,7 +3,7 @@ body{
     background: lightblue;
 }
 
-nav{
+header{
     text-align: center;
 }
 
@@ -45,4 +45,15 @@ main button{
 
 header{
     border-bottom: 2px solid lightgrey;
+}
+
+.edit-form{
+    width: 30%;
+    margin: 0 auto;
+    text-align: left;
+}
+
+footer{
+    position: relative;
+    bottom: 0;
 }
