@@ -37,7 +37,7 @@
 
             <h2>Badges</h2>
             <% for(let i = 0; i < badges.length; i++) { %>
-                    <input type="checkbox" name="badgesWanted" value="<%=badges[i]._id%>"><%=badges[i].title%><br>
+                    <input type="checkbox" name="badgesWanted" value="<%=badges[i]%>"><%=badges[i]%><br>
             <% } %>
             <input type="submit" value="Submit">
         </form>
@@ -45,9 +45,15 @@
 
 
         <ul>
-            <% users.forEach((user)=>{ %>
-                <li><%= user.displayName %> <%= user.gender %><br>
-                <img src="<%= user.img %>">
+            <% users.forEach((otherUser)=>{ %>
+                <% if(otherUser !== user) %>
+                <li><%= otherUser.displayName %> <br>
+                    <%= otherUser.gender %> <br>
+                    Age: <%= otherUser.age %> <br>
+                    Badges: <% otherUser.badgeList.forEach((badge)=>{ %>
+                    <%= badge.title %>
+                <% }) %><br>
+                <img src="<%= otherUser.img %>">
                 </li>
 
             <% }) %>
