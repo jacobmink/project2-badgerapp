@@ -1,3 +1,48 @@
+
+body{
+    background: lightblue;
+}
+
+nav{
+    text-align: center;
+}
+
 nav li{
     display: inline-block;
+}
+
+main li{
+    list-style-type: none;
+}
+
+main ul{
+    text-align: center;
+    justify-content: left;
+}
+
+nav button{
+    background: blue;
+    color: white;
+}
+
+main{
+    text-align: center;
+}
+
+main button{
+    background: rgb(183, 35, 241);
+    color: white;
+}
+
+.filter-form{
+    padding-bottom: 5px;
+    border-bottom: 2px solid lightgrey;
+}
+
+.filter-form div{
+    display: inline-block;
+}
+
+header{
+    border-bottom: 2px solid lightgrey;
 }
