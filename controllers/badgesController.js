@@ -29,7 +29,7 @@ router.route('/new')
         try{
             const foundUser = await User.findById(req.userId);
             const allBadges = await Badge.find({});
-            res.render(`users/newBadge.ejs`, {
+            res.render('badges/newBadge.ejs', {
                 user: foundUser,
                 allBadges: allBadges,
                 badgeTitles: badgeTitles
@@ -38,6 +38,19 @@ router.route('/new')
             res.send(err);
         }
     })
+
+router.route('/:id')
+    .get(async (req,res)=>{
+        try{
+            const foundBadge = await Badge.findById(req.params.id);
+            res.render('/badges/show.ejs', {
+                badge: foundBadge
+            });
+        }catch(err){
+            res.send(err);
+        }
+    })
+
 
 
 

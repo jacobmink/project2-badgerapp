@@ -18,6 +18,8 @@
         <h1><%= user.displayName %></h1><br>
         <img src="<%= user.img %>"> <br>
         Username: <%= user.username %> <br>
+        Age: <%= user.age %> <br>
+        Gender: <%= user.gender %> <br>
         About: <%= user.about %> <br>
         <a href="/users/<%= user._id %>/edit"><button>Edit profile</button></a>
         <form action="/users/<%= user._id %>?_method=DELETE" method="POST"><button>Delete this account</button></form>
@@ -25,7 +27,9 @@
         Badges:
         <% for(let i = 0; i < user.badgeList.length; i++) { %>
             <a href="/badges/<%=user.badgeList[i]._id%>"><%=user.badgeList[i].title%></a>
-        <% } %>
+        <% } %> <br>
+
+        <a href="/users/<%= user._id %>/badges/new"><button>Add Badge</button></a>
 
     </main>
     <footer>

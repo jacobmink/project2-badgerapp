@@ -4,6 +4,7 @@ const app = express();
 const bodyParser = require('body-parser');
 const methodOverride = require('method-override');
 const morgan = require('morgan');
+const faker = require('faker');
 const usersController = require('./controllers/usersController');
 const authsController = require('./controllers/auths');
 const badgesController = require('./controllers/badgesController');
