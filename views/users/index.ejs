@@ -15,50 +15,70 @@
         </nav>
     </header>
     <main>
+        <section>
+            <form action="/users" class="filter-form">
+                <div>
+                    <h2>Gender:</h2>
+                    <input type="checkbox" name="gender" value="Male"> Male<br>
+                    <input type="checkbox" name="gender" value="Female"> Female<br>
+                    <input type="checkbox" name="gender" value="Other"> Other<br>
+                </div>
+                
+                <div>
+                    <h2>Age: </h2>
+                    <select name="minAge">
+                        <% for(let i = 18; i < 100; i++) { %>
+                            <option value="<%=i%>"><%=i%></option>
+                        <% } %>
+                    </select>
+                    <small>-</small>
+                    <select name="maxAge">
+                        <% for(let i = 18; i < 100; i++) { %>
+                            <option value="<%=i%>"><%= i %></option>
+                        <% } %>
+                    </select>
+                </div>
+                
+                <div>
+                    <h2>Badges</h2>
+                    <% for(let i = 0; i < badges.length; i++) { %>
+                        <input type="checkbox" name="badgesWanted" value="<%=badges[i]%>"><%=badges[i]%><br>
+                    <% } %>
+                </div>
+                
+                <button type="submit">Submit</button>
+            </form>
 
-        <form action="/users">
-            <h2>Gender:</h2>
-            <input type="checkbox" name="gender" value="Male"> Male<br>
-            <input type="checkbox" name="gender" value="Female"> Female<br>
-            <input type="checkbox" name="gender" value="Other"> Other<br>
+        </section>
+        
 
-            <h2>Age: </h2>
-            <select name="minAge">
-                <% for(let i = 18; i < 100; i++) { %>
-                        <option value="<%=i%>"><%=i%></option>
-                <% } %>
-            </select>
-            <small>-</small>
-            <select name="maxAge">
-                <% for(let i = 18; i < 100; i++) { %>
-                    <option value="<%=i%>"><%= i %></option>
-                <% } %>
-            </select>
-
-            <h2>Badges</h2>
-            <% for(let i = 0; i < badges.length; i++) { %>
-                    <input type="checkbox" name="badgesWanted" value="<%=badges[i]%>"><%=badges[i]%><br>
-            <% } %>
-            <input type="submit" value="Submit">
-        </form>
-
-
-
-        <ul>
-            <% users.forEach((otherUser)=>{ %>
-                <% if(otherUser !== user) %>
-                <li><a href="/users/<%= otherUser._id %>"><%= otherUser.displayName %></a> <br>
-                    <%= otherUser.gender %> <br>
-                    Age: <%= otherUser.age %> <br>
-                    Badges: <% otherUser.badgeList.forEach((badge)=>{ %>
-                    <%= badge.title %>
-                <% }) %><br>
-                <img src="<%= otherUser.img %>">
-                </li>
-
-            <% }) %>
-        </ul>
+        <section>
+            <ul>
+                <% users.forEach((otherUser)=>{ %>
+                    <% if(otherUser !== user) %>
+                    <li><a href="/users/<%= otherUser._id %>"><%= otherUser.displayName %></a> <br>
+                        <%= otherUser.gender %> <br>
+                        Age: <%= otherUser.age %> <br>
+                        Badges: <% otherUser.badgeList.forEach((badge)=>{ %>
+                        <%= badge.title %>
+                    <% }) %><br>
+                    <img src="<%= otherUser.img %>">
+                    </li>
+    
+                <% }) %>
+            </ul>
+        </section>
     </main>
+    <footer>
+        <nav>
+            <ul>
+            <li>Copyright</li>
+            <li>Contacts</li>
+            <li>Rules</li>
+            <li>Jobs</li>
+            </ul>
+        </nav>
+    </footer>   
     
 </body>
 </html>

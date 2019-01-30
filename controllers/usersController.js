@@ -2,7 +2,6 @@ const express = require('express');
 const mongoose = require('mongoose');
 const router = express.Router();
 const bcrypt = require('bcryptjs');
-// const queryString = require('query-string');
 const paginate = require('paginate')({
     mongoose: mongoose
 });
@@ -23,7 +22,6 @@ const badgeTitles = [
 router.route('/')
     // index
     .get(async (req,res)=>{
-        // console.log(req.query);
         const loggedIn = await User.findOne({'username': req.session.username});
         try{
             if(JSON.stringify(req.query) == "{}"){
@@ -35,7 +33,6 @@ router.route('/')
                     user: loggedIn,
                     genderList: genderList,
                     badges: badgeTitles
-                    // badges: await Badge.find({})
                 })
             }else{
                 let filteredUsers = await User.find({'username': {$ne: req.session.username}});
@@ -70,7 +67,6 @@ router.route('/')
                     user: loggedIn,
                     genderList: genderList,
                     badges: badgeTitles
-                    // badges: await Badge.find({})
                 })
             }
         }catch(err){
@@ -78,7 +74,6 @@ router.route('/')
             res.send(err);
         }
     })
-
     // post
     .post(async (req,res)=>{
         const password = req.body.password;
@@ -112,14 +107,6 @@ router.route('/')
         }
     });
 
-// router.route('/new')
-//     .get((req,res)=>{
-//             res.render('/users/new.ejs');
-//     });
-
-
-
-
 router.route('/:id')
     // show profile
     .get(async (req,res)=>{
@@ -133,6 +120,7 @@ router.route('/:id')
             res.send(err);
         }
     })
+    // post new badge
     .post(async (req,res)=>{
         console.log(req.body)
         try{
@@ -158,7 +146,6 @@ router.route('/:id')
             console.log(err);
             res.send(err);
         }
-        
     })
     // update profile
     .put(async (req,res)=>{
@@ -183,20 +170,7 @@ router.route('/:id')
         }
     })
 
-router.route('/:id/newbadge')
-    .get(async (req,res)=>{
-        try{
-            const foundUser = await User.findById(req.params.id);
-            res.render('/users/newBadge.ejs', {
-                badgeList: foundUser.badgeList
-            });
-        }catch(err){
-            res.send(err);
-        }
-    })
-
-
-    // edit user profile
+// edit user profile
 router.route('/:id/edit')
     .get(async (req,res)=>{
         if(req.session.userId == req.params.id){
@@ -214,4 +188,4 @@ router.route('/:id/edit')
         }
     })
 
-    module.exports = router;
+module.exports = router;
