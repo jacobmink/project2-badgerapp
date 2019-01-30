@@ -3,6 +3,8 @@ const router = express.Router();
 const bcrypt = require('bcryptjs');
 const User = require('../models/users');
 
+const genderList = ['Male','Female','Other'];
+
 // login // signin
 router.route('/login')
     .get(async (req,res)=>{
@@ -51,7 +53,8 @@ router.route('/logout')
 router.route('/createuser')
     .get((req,res)=>{
         res.render('auths/createuser.ejs', {
-            message: req.session.message
+            message: req.session.message,
+            genderList: genderList
         });
     })
     // .post(async (req,res)=>{

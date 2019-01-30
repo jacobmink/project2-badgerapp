@@ -15,10 +15,40 @@
         </nav>
     </header>
     <main>
+
+        <form action="/users">
+            <h2>Gender:</h2>
+            <input type="checkbox" name="gender" value="Male"> Male<br>
+            <input type="checkbox" name="gender" value="Female"> Female<br>
+            <input type="checkbox" name="gender" value="Other"> Other<br>
+
+            <h2>Age: </h2>
+            <select name="minAge">
+                <% for(let i = 18; i < 100; i++) { %>
+                        <option value="<%=i%>"><%=i%></option>
+                <% } %>
+            </select>
+            <small>-</small>
+            <select name="maxAge">
+                <% for(let i = 18; i < 100; i++) { %>
+                    <option value="<%=i%>"><%= i %></option>
+                <% } %>
+            </select>
+
+            <h2>Badges</h2>
+            <% for(let i = 0; i < badges.length; i++) { %>
+                    <input type="checkbox" name="badgesWanted" value="<%=badges[i]._id%>"><%=badges[i].title%><br>
+            <% } %>
+            <input type="submit" value="Submit">
+        </form>
+
+
+
         <ul>
             <% users.forEach((user)=>{ %>
-                <li><%= user.displayName %> <br>
-                <img src="<%= user.img %>" alt=""></li>
+                <li><%= user.displayName %> <%= user.gender %><br>
+                <img src="<%= user.img %>">
+                </li>
 
             <% }) %>
         </ul>

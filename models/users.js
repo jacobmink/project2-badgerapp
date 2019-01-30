@@ -8,6 +8,8 @@ const Badge   = require('./badges');
      displayName:   {type: String, required: true},
      img:           [{type: String, required: true}],
      about:         String,
+     age:           {type: Number, required: true},
+     gender:        {type: String, required: true},
      flagged:       {type: Boolean},
      badgeList:     [Badge.schema]
  });

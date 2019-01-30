@@ -2,6 +2,7 @@ const express = require('express');
 const mongoose = require('mongoose');
 const router = express.Router();
 const bcrypt = require('bcryptjs');
+// const queryString = require('query-string');
 const paginate = require('paginate')({
     mongoose: mongoose
 });
@@ -11,17 +12,40 @@ const Badge = require('../models/badges');
 const EventModel = require('../models/events');
 
 
+const genderList = ['Male','Female','Other'];
+
 router.route('/')
     // index
     .get(async (req,res)=>{
+        // console.log(req.query);
+        const loggedIn = await User.findOne({'username': req.session.username});
         try{
-            const allUsers = await User.find({});
-            const loggedIn = await User.findOne({'username': req.session.username});
-            res.render('users/index.ejs', {
-                users: allUsers,
-                user: loggedIn
-            });
+            if(JSON.stringify(req.query) == "{}"){
+                const allUsers = await User.find({});
+                res.render('users/index.ejs', {
+                    users: allUsers,
+                    user: loggedIn,
+                    genderList: genderList,
+                    badges: await Badge.find({})
+                })
+            }else{
+                if(!Array.isArray(req.query.gender)){
+                    req.query.gender = [req.query.gender];
+                }
+                const filteredUsers = await User.find({
+                    'gender': {$in: req.query.gender},
+                    'age': {$gte: req.query.minAge, $lte: req.query.maxAge}
+                });
+                res.render('users/index.ejs', {
+                    users: filteredUsers,
+                    user: loggedIn,
+                    genderList: genderList,
+                    badges: await Badge.find({})
+                })
+            }
+            
         }catch(err){
+            console.log(err);
             res.send(err);
         }
     })
@@ -36,6 +60,8 @@ router.route('/')
         userDbEntry.password = hashedPassword;
         userDbEntry.email = req.body.email;
         userDbEntry.displayName = req.body.displayName;
+        userDbEntry.age = req.body.age;
+        userDbEntry.gender = req.body.gender
         userDbEntry.about = req.body.about;
         try{
             const userExists = await User.findOne({'username': userDbEntry.username});
@@ -47,7 +73,9 @@ router.route('/')
                 res.redirect(`/users/${createdUser._id}`);
             }else{
                 req.session.message = 'USER ALREADY EXISTS, PLEASE MAKE A DIFFERENT ACCOUNT';
-                res.redirect('/auths/createuser');
+                res.redirect('/auths/createuser', {
+                    genderList: genderList
+                });
             }
             
         }catch(err){
@@ -139,7 +167,8 @@ router.route('/:id/edit')
         try{
             const foundUser = await User.findById(req.params.id);
             res.render('users/edit.ejs', {
-                user: foundUser
+                user: foundUser,
+                genderList: genderList
             });
         }catch(err){
             res.send(err);

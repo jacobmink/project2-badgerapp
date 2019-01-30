@@ -10,12 +10,20 @@
     </header>
     <main>
         <form action="/users/<%= user._id %>?_method=PUT" method="POST">
-            <input type="text" name="username" value="<%= user.username %>"><br/>
-            <input type="password" name="password" value="<%= user.password %>"><br/>
-            <input type="email" name="email" value="<%= user.email %>"><br>
-            <input type="text" name="displayName" value="<%= user.displayName %>"><br>
-            <textarea name="about"><%= user.about %></textarea><br>
-            <input type="text" name="img" value="<%= user.img %>">
+            Username: <input type="text" name="username" value="<%= user.username %>"><br/>
+            Password: <input type="password" name="password" value="<%= user.password %>"><br/>
+            Email: <input type="email" name="email" value="<%= user.email %>"><br>
+
+            Gender: <select name="gender">
+                    <% for(let i = 0; i < genderList.length; i++){ %>
+                        <option value="<%= genderList[i] %>"><%= genderList[i] %></option>
+                    <% } %>
+                    </select><br>
+
+            Age: <input type="text" name="age" value="<%= user.age %>"><br>
+            Display Name: <input type="text" name="displayName" value="<%= user.displayName %>"><br>
+            About: <textarea name="about"><%= user.about %></textarea><br>
+            Photo: <input type="text" name="img" value="<%= user.img %>">
             <button type="submit">Update Profile</button>
         </form>
     </main>
