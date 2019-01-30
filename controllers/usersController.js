@@ -13,6 +13,12 @@ const EventModel = require('../models/events');
 
 
 const genderList = ['Male','Female','Other'];
+const badgeTitles = [
+    'hike',
+    'bike',
+    'swim',
+    'cook'
+];
 
 router.route('/')
     // index
@@ -21,29 +27,52 @@ router.route('/')
         const loggedIn = await User.findOne({'username': req.session.username});
         try{
             if(JSON.stringify(req.query) == "{}"){
-                const allUsers = await User.find({});
+                const allUsers = await User.find({
+                    'username': {$ne: req.session.username}
+                });
                 res.render('users/index.ejs', {
                     users: allUsers,
                     user: loggedIn,
                     genderList: genderList,
-                    badges: await Badge.find({})
+                    badges: badgeTitles
+                    // badges: await Badge.find({})
                 })
             }else{
-                if(!Array.isArray(req.query.gender)){
-                    req.query.gender = [req.query.gender];
-                }
-                const filteredUsers = await User.find({
-                    'gender': {$in: req.query.gender},
-                    'age': {$gte: req.query.minAge, $lte: req.query.maxAge}
+                let filteredUsers = await User.find({'username': {$ne: req.session.username}});
+                // filter by age
+                filteredUsers = filteredUsers.filter((user)=>{
+                    return (user.age >= req.query.minAge && user.age <=  req.query.maxAge);
                 });
+                // filter by gender
+                if(req.query.gender){
+                    if(!Array.isArray(req.query.gender)){
+                        req.query.gender = [req.query.gender];
+                    }
+                    filteredUsers = filteredUsers.filter((user)=>{
+                        return req.query.gender.includes(user.gender);
+                    });
+                }
+                // filter by badges wanted
+                if(req.query.badgesWanted){
+                    if(!Array.isArray(req.query.badgesWanted)){
+                        req.query.badgesWanted = [req.query.badgesWanted];
+                    }
+                    filteredUsers = filteredUsers.filter((user)=>{
+                        return req.query.badgesWanted.every((badgeName)=>{
+                            let badgeTitleList = user.badgeList.map((badge)=> badge.title)
+                            return badgeTitleList.includes(badgeName);
+                        });
+                    });
+                }
+                console.log(req.query);
                 res.render('users/index.ejs', {
                     users: filteredUsers,
                     user: loggedIn,
                     genderList: genderList,
-                    badges: await Badge.find({})
+                    badges: badgeTitles
+                    // badges: await Badge.find({})
                 })
             }
-            
         }catch(err){
             console.log(err);
             res.send(err);
@@ -107,7 +136,7 @@ router.route('/:id')
         console.log(req.body)
         try{
             const foundUser = await User.findById(req.params.id);
-            const eventsList = await Promise.all(
+            const eventsList = await Promise.all([
                 EventModel.create({
                     img: req.body.img1,
                     description: req.body.description1}),
@@ -116,7 +145,7 @@ router.route('/:id')
                     description: req.body.description2}),
                 EventModel.create({
                     img: req.body.img3,
-                    description: req.body.description3}));
+                    description: req.body.description3})]);
             const newBadge = await Badge.create({
                 title: req.body.title,
                 events: eventsList
@@ -125,6 +154,7 @@ router.route('/:id')
             await foundUser.save();
             res.redirect(`/users/${req.params.id}`);
         }catch(err){
+            console.log(err);
             res.send(err);
         }
         

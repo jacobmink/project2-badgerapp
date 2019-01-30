@@ -25,9 +25,16 @@
         <form action="/users/<%= user._id %>?_method=DELETE" method="POST"><button>Delete this account</button></form>
 
         Badges:
-        <% for(let i = 0; i < user.badgeList.length; i++) { %>
-            <a href="/badges/<%=user.badgeList[i]._id%>"><%=user.badgeList[i].title%></a>
-        <% } %> <br>
+        <ul>
+            <% for(let i = 0; i < user.badgeList.length; i++) { %>
+                <li><a href="/users/<%= user._id %>/badges/<%=user.badgeList[i]._id%>"><%=user.badgeList[i].title%></a></li>
+                
+            <% } %> <br>
+
+
+
+        </ul>
+        
 
         <a href="/users/<%= user._id %>/badges/new"><button>Add Badge</button></a>
 

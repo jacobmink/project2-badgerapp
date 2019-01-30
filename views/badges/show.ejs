@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="/style.css">
+    <title>Badge</title>
+</head>
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="/users/<%= user._id %>"><button>Back to Profile</button></a></li>
+            </ul>
+
+
+        </nav>
+        <h1><%= user.displayName %>'s <%= badge.title %> Badge</h1>
+    </header>
+    <main>
+        <ul>
+            <% badge.events.forEach((event)=>{ %>
+                <li><%= event.img %> <br>
+                <%= event.description %></li>
+            <% })%>
+        </ul>
+        
+
+
+
+
+    </main>
+    
+</body>
+</html>
