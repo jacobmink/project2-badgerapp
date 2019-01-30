@@ -20,6 +20,7 @@ router.route('/login')
             if(foundUser){
                 if(bcrypt.compareSync(req.body.password, foundUser.password)){
                     req.session.message = '';
+                    req.session.userId = foundUser._id;
                     req.session.username = foundUser.username;
                     req.session.logged = true;
                     res.redirect(`/users/${foundUser._id}`);

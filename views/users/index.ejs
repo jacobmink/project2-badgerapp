@@ -47,7 +47,7 @@
         <ul>
             <% users.forEach((otherUser)=>{ %>
                 <% if(otherUser !== user) %>
-                <li><%= otherUser.displayName %> <br>
+                <li><a href="/users/<%= otherUser._id %>"><%= otherUser.displayName %></a> <br>
                     <%= otherUser.gender %> <br>
                     Age: <%= otherUser.age %> <br>
                     Badges: <% otherUser.badgeList.forEach((badge)=>{ %>

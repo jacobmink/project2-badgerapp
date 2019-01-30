@@ -21,8 +21,13 @@
         Age: <%= user.age %> <br>
         Gender: <%= user.gender %> <br>
         About: <%= user.about %> <br>
-        <a href="/users/<%= user._id %>/edit"><button>Edit profile</button></a>
-        <form action="/users/<%= user._id %>?_method=DELETE" method="POST"><button>Delete this account</button></form>
+
+
+        <% if(user._id.toString() === sessionId.toString()){ %>
+            <a href="/users/<%= user._id %>/edit"><button>Edit profile</button></a>
+            <form action="/users/<%= user._id %>?_method=DELETE" method="POST"><button>Delete this account</button></form>
+        <% } %>
+        
 
         Badges:
         <ul>
