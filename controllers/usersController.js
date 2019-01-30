@@ -126,7 +126,8 @@ router.route('/:id')
         try{
             const foundUser = await User.findById(req.params.id);
             res.render('users/show.ejs', {
-                user: foundUser
+                user: foundUser,
+                sessionId: req.session.userId
             });
         }catch(err){
             res.send(err);
@@ -170,11 +171,15 @@ router.route('/:id')
     })
     // delete account
     .delete(async (req,res)=>{
-        try{
-            await User.findByIdAndDelete(req.params.id);
-            res.redirect('/');
-        }catch(err){
-            res.send(err);
+        if(req.session.userId === req.params.id){
+            try{
+                await User.findByIdAndDelete(req.params.id);
+                res.redirect('/');
+            }catch(err){
+                res.send(err);
+            }
+        }else{
+            res.send("AH AH AH, YOU DIDN'T SAY THE MAGIC WORD");
         }
     })
 
@@ -194,14 +199,18 @@ router.route('/:id/newbadge')
     // edit user profile
 router.route('/:id/edit')
     .get(async (req,res)=>{
-        try{
-            const foundUser = await User.findById(req.params.id);
-            res.render('users/edit.ejs', {
-                user: foundUser,
-                genderList: genderList
-            });
-        }catch(err){
-            res.send(err);
+        if(req.session.userId == req.params.id){
+            try{
+                const foundUser = await User.findById(req.params.id);
+                res.render('users/edit.ejs', {
+                    user: foundUser,
+                    genderList: genderList
+                });
+            }catch(err){
+                res.send(err);
+            }
+        }else{
+            res.send('AH AH AH YOU DIDNT SAY THE MAGIC WORD');
         }
     })
 
