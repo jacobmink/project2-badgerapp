@@ -36,7 +36,8 @@ router.route('/')
                     users: allUsers,
                     user: loggedIn,
                     genderList: genderList,
-                    badges: badgeTitles
+                    badges: badgeTitles,
+                    sessionId: req.session.userId
                 })
             }else{
                 let filteredUsers = await User.find({'username': {$ne: req.session.username}});
@@ -182,7 +183,8 @@ router.route('/:id/edit')
                 const foundUser = await User.findById(req.params.id);
                 res.render('users/edit.ejs', {
                     user: foundUser,
-                    genderList: genderList
+                    genderList: genderList,
+                    sessionId: req.session.userId
                 });
             }catch(err){
                 res.send(err);
