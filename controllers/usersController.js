@@ -20,7 +20,26 @@ const badgeTitles = [
     'hike',
     'bike',
     'swim',
-    'cook'
+    'cook',
+    'fish',
+    'music',
+    'climb',
+    'religion',
+    'videogame',
+    'ski/snowboard',
+    'bar games',
+    'boardgames',
+    'running',
+    'international travel',
+    'calligraphy',
+    'exercise',
+    'vegan',
+    'volunteering',
+    'team sports',
+    'reading',
+    'coding',
+    'trivia',
+    'movie buff'
 ];
 
 router.route('/')
