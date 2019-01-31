@@ -10,9 +10,9 @@ const authsController = require('./controllers/auths');
 const badgesController = require('./controllers/badgesController');
 const session = require('express-session');
 require('dotenv').config();
-const MongeDBStore = require('connect-mongodb-session')(session);
-const store = new MongeDBStore({
-    uri: 'mongodb://localhost:27017/connect_mongodb_session_test', collection: 'mySessions'
+const MongoDBStore = require('connect-mongodb-session')(session);
+const store = new MongoDBStore({
+    uri: process.env.MONGODB_URI, collection: 'mySessions'
 });
 
 store.on('error', (err)=>{
