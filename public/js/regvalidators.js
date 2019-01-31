@@ -62,8 +62,8 @@ $('#regform').submit((e)=>{
         $(e.currentTarget).submit();
         console.log('everything is not fine')
     }else{
-        $('#errorWindow').empty();
-        $('#errorWindow').append((errors.username ? errors.username + '<br>': '') + (errors.password ? errors.password + '<br>': '') + (errors.email ? errors.email + '<br>': '') + (errors.displayName ? errors.displayName + '<br>': '') + (errors.img ? errors.img + '<br>': ''));
+        $('.error-window').empty();
+        $('.error-window').append((errors.username ? errors.username + '<br>': '') + (errors.password ? errors.password + '<br>': '') + (errors.email ? errors.email + '<br>': '') + (errors.displayName ? errors.displayName + '<br>': '') + (errors.img ? errors.img + '<br>': ''));
         console.log(errors);
     }
 

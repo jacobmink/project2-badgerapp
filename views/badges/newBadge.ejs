@@ -1,38 +1,36 @@
 <!DOCTYPE html>
 <html>
     <head>
+        <% include ../partials/headmeta %>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
         <title>Create New Badge</title>
     </head>
     <body>
         <header>
-            <section>
-                <a href="/users/<%=user._id%>">Profile</a>
-                <a href="/users/">Swipe</a>
-                <a href="/users/message">Message</a>
-            </section>
+            <% include ../partials/header %>
         </header>
         <main>
-
             <section>
-                <h3>Events</h3>
-                <form action="/users/<%=user._id%>" method="POST">
-                    <h2>Enter Badge Title</h2>
+                <h1>Add Badge</h1>
+                <div class="error-window"></div>
+                <form id="badgeform" action="/users/<%=user._id%>" method="POST">
+                    <h3>Enter Badge Title</h3>
                     <select id="badges" name="title">
                         <%for (let i = 0; i < badgeTitles.length; i++) { %>
                             <option value="<%=badgeTitles[i]%>"><%=badgeTitles[i]%></option>
                         <% } %>
                         </select>
 
-                    <h4>First</h4>
+                    <h4>First Event</h4>
 
                     Image:        <input type="url" name="img1" placeholder="img"><br/>
                     Description:  <textarea name="description1"></textarea><br/>
               
-                    <h4>Second</h4>
+                    <h4>Second Event</h4>
                     Image:        <input type="url" name="img2" placeholder="img"><br/>
                     Description:  <textarea name="description2"></textarea><br/>
                 
-                    <h4>Third</h4>
+                    <h4>Third Event</h4>
                     Image:        <input type="url" name="img3" placeholder="img"><br/>
                     Description:  <textarea name="description3"></textarea><br/>
 
@@ -41,14 +39,8 @@
             </section>
         </main>
         <footer>
-            <nav>
-                <ul>
-                    <li>Copyright</li>
-                    <li>Contacts</li>
-                    <li>Rules</li>
-                    <li>Jobs</li>
-                </ul>
-            </nav>
+            <% include ../partials/footer %>
         </footer>
+        <script src="/js/badgevalidators.js"></script>
     </body>
 </html>

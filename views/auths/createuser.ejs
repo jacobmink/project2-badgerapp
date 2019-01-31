@@ -1,10 +1,8 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <% include ../partials/headmeta %>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-        
-        <link rel="stylesheet" href="/style.css">
         <title>Create User</title>
     </head>
     <body>
@@ -19,10 +17,7 @@
             <h1>Create Your Profile</h1>
             <section class="main-form">
                 <%= message %>
-                <div id="errorWindow">
-
-
-                </div>
+                <div class="error-window"></div>
                 <form action="/users" method="POST" id="regform">
                     Username: <input type="text" name="username" placeholder="Create username"><br/>
                     Password: <input type="password" name="password" placeholder="Create password"><br/>

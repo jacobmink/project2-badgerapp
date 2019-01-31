@@ -22,9 +22,6 @@ router.route('/')
         }
     })
 
-
-
-
 router.route('/new')
     .get(async (req,res)=>{
         try{
@@ -33,7 +30,8 @@ router.route('/new')
             res.render('badges/newBadge.ejs', {
                 user: foundUser,
                 allBadges: allBadges,
-                badgeTitles: badgeTitles
+                badgeTitles: badgeTitles,
+                sessionId: req.session.userId
             })
         }catch(err){
             console.log(err);
@@ -54,8 +52,5 @@ router.route('/:id')
             res.send(err);
         }
     })
-
-
-
 
 module.exports = router;

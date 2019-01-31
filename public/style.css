@@ -62,7 +62,7 @@ header{
     padding: 10px;
 }
 
-#errorWindow{
+.error-window{
     color: red;
 }
 
