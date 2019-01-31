@@ -1,44 +1,52 @@
 <!DOCTYPE html>
 <html>
     <head>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        
+        <link rel="stylesheet" href="/style.css">
         <title>Create User</title>
     </head>
     <body>
         <header>
-            <h1>Create Your Profile</h1>
             <nav>
+                <ul>
+                    <li><a href="/"><button>Back To Home</button></a></li>
+                </ul>
+            </nav>
+        </header>
+        <main>
+            <h1>Create Your Profile</h1>
+            <section class="main-form">
                 <%= message %>
-                <form action="/users" method="POST">
+                <div id="errorWindow">
+
+
+                </div>
+                <form action="/users" method="POST" id="regform">
                     Username: <input type="text" name="username" placeholder="Create username"><br/>
                     Password: <input type="password" name="password" placeholder="Create password"><br/>
                     Email: <input type="email" name="email" placeholder="Enter your email"><br>
                     Display Name: <input type="text" name="displayName" placeholder="Display Name"><br>
-                    Age: <input type="text" name="age" placeholder="How old are you?"><br>
+                    Age: <select name="age">
+                        <% for(let i = 0; i < ageList.length; i++){ %>
+                            <option value="<%= ageList[i] %>"><%= ageList[i] %></option>
+                        <% } %>
+                    </select> <br>
                     Gender: <select name="gender">
                         <% for(let i = 0; i < genderList.length; i++){ %>
                             <option value="<%= genderList[i] %>"><%= genderList[i] %></option>
                         <% } %>
                         </select><br>
                     About: <textarea name="about" placeholder="Describe yourself!"></textarea><br>
-                    Photo: <input type="text" name="img" placeholder="Add an image URL">
+                    Photo: <input type="text" name="img" placeholder="Add an image URL"><br>
                     <button type="submit">Register</button>
                 </form>
-            </nav>
-        </header>
-        <nav>
-            <ul>
-                <li><a href="/">Back To Home</a></li>
-            </ul>
-        </nav>
+            </section>
+        </main>
         <footer>
-            <nav>
-                <ul>
-                    <li>Copyright</li>
-                    <li>Contacts</li>
-                    <li>Rules</li>
-                    <li>Jobs</li>
-                </ul>
-            </nav>
+            <% include ../partials/footer %>
         </footer>
+
+        <script src="/js/regvalidators.js"></script>
     </body>
 </html>

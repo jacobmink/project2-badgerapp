@@ -1,6 +1,7 @@
 
 body{
     background: lightblue;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', sans-serif;
 }
 
 header{
@@ -27,6 +28,7 @@ nav button{
 
 main{
     text-align: center;
+    min-height: calc(100vh - 10px);
 }
 
 main button{
@@ -47,13 +49,25 @@ header{
     border-bottom: 2px solid lightgrey;
 }
 
-.edit-form{
-    width: 30%;
+.main-form{
+    width: 50%;
     margin: 0 auto;
     text-align: left;
 }
 
+.filters div{
+    padding: 10px;
+}
+
+#errorWindow{
+    color: red;
+}
+
 footer{
+    border-top: 2px solid lightgrey;
     position: relative;
     bottom: 0;
+    left: 0;
+    right: 0;
+    height: 10px;
 }

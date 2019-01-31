@@ -8,9 +8,8 @@ const faker = require('faker');
 const usersController = require('./controllers/usersController');
 const authsController = require('./controllers/auths');
 const badgesController = require('./controllers/badgesController');
-
-
 const session = require('express-session');
+require('dotenv').config();
 const MongeDBStore = require('connect-mongodb-session')(session);
 const store = new MongeDBStore({
     uri: 'mongodb://localhost:27017/connect_mongodb_session_test', collection: 'mySessions'
@@ -50,6 +49,6 @@ app.get('/', (req,res)=>{
 });
 
 
-app.listen(3000, ()=>{
+app.listen(process.env.PORT, ()=>{
     console.log('SERVER RUNNING...');
 });
