@@ -12,6 +12,10 @@ const EventModel = require('../models/events');
 
 
 const genderList = ['Male','Female','Other'];
+const ageList = [];
+for(let i = 18; i < 100; i++){
+    ageList.push(i);
+}
 const badgeTitles = [
     'hike',
     'bike',
@@ -92,17 +96,17 @@ router.route('/')
             if(!userExists){
                 req.session.message = '';
                 const createdUser = await User.create(userDbEntry);
+                req.session.userId = createdUser._id;
                 req.session.username = createdUser.username;
                 req.session.logged = true;
                 res.redirect(`/users/${createdUser._id}`);
             }else{
                 req.session.message = 'USER ALREADY EXISTS, PLEASE MAKE A DIFFERENT ACCOUNT';
-                res.redirect('/auths/createuser', {
-                    genderList: genderList
-                });
+                res.redirect('/auths/createuser');
             }
             
         }catch(err){
+            console.log(err);
             res.send(err);
         }
     });

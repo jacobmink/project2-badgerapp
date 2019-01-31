@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-const connectionString = 'mongodb://localhost/badger-user-db';
+const connectionString = process.env.MONGODB_URI;
 
 mongoose.connect(connectionString, {
     useNewUrlParser: true,

@@ -1,33 +1,30 @@
 <!DOCTYPE html>
 <html>
   <head>
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+      <script src="/js/regvalidators"></script>
+
+    <link rel="stylesheet" href="/style.css">
     <title>Login</title>
   </head>
   <body>
     <header>
-      <h1>Login To Your Prfile</h1>
+      <nav>
+        <ul>
+          <li><a href="/"><button>Back To Home</button></a></li>
+        </ul>
+      </nav>
     </header>
     <main>
-      <form action="/auths/login" method="POST">
+      <h1>Login To Your Profile</h1>
+      <form action="/auths/login" method="POST" id="loginform">
         <input type="text" name="username" placeholder="username"><br/>
         <input type="password" name="password" placeholder="password"><br/>
         <button type="submit">Login</button>
       </form>
-      <nav>
-        <ul>
-          <li><a href="/">Back To Home</a></li>
-        </ul>
-      </nav>
     </main>
     <footer>
-      <nav>
-        <ul>
-          <li>Copyright</li>
-          <li>Contacts</li>
-          <li>Rules</li>
-          <li>Jobs</li>
-        </ul>
-      </nav>
+      <% include ../partials/footer %>
     </footer>
   </body>
 </html>
