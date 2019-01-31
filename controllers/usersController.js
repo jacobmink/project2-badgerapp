@@ -71,7 +71,8 @@ router.route('/')
                     users: filteredUsers,
                     user: loggedIn,
                     genderList: genderList,
-                    badges: badgeTitles
+                    badges: badgeTitles,
+                    sessionId: req.session.userId
                 })
             }
         }catch(err){
