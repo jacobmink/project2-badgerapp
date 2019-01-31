@@ -1,3 +1,6 @@
+@media(max-width: 600px){
+
+
 
 body{
     background: lightblue;
@@ -70,4 +73,6 @@ footer{
     left: 0;
     right: 0;
     height: 10px;
+}
+
 }
