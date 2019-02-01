@@ -71,5 +71,16 @@ router.route('/:id')
             res.send(err);
         }
     })
+    .delete(async (req,res)=>{
+        try{
+            await Badge.findByIdAndDelete(req.params.id);
+            const foundUser = await findOne({'badgeList._id': req.params.id});
+            foundUser.badgeList.id(req.params.id).remove();
+            await foundUser.save();
+            res.redirect(`/users/${req.userId}`);
+        }catch(err){
+            res.send(err);
+        }
+    })
 
 module.exports = router;

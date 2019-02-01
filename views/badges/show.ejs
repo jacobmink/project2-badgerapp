@@ -20,6 +20,15 @@
                 <%= event.description %></li>
             <% })%>
         </ul>
+        <section>
+            <form action="/badges/<%= badge._id %>?method=DELETE" method="POST">
+            <button type="submit">Delete this badge</button>
+            </form>
+
+
+
+
+        </section>
     </main>
     <footer>
         <% include ../partials/footer %>
