@@ -21,10 +21,11 @@
             <% })%>
         </ul>
         <section>
-            <form action="/badges/<%= badge._id %>?method=DELETE" method="POST">
+            <% if(user._id.toString() === sessionId.toString()){ %>
+            <form action="/users/<%= user._id %>/badges/<%= badge._id %>?_method=DELETE" method="POST">
             <button type="submit">Delete this badge</button>
             </form>
-
+            <% } %>
 
 
 

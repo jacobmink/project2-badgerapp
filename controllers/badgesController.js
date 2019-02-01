@@ -65,7 +65,8 @@ router.route('/:id')
             const foundBadge = await Badge.findById(req.params.id);
             res.render('badges/show.ejs', {
                 badge: foundBadge,
-                user: foundUser
+                user: foundUser,
+                sessionId: req.session.userId
             });
         }catch(err){
             res.send(err);
@@ -74,11 +75,12 @@ router.route('/:id')
     .delete(async (req,res)=>{
         try{
             await Badge.findByIdAndDelete(req.params.id);
-            const foundUser = await findOne({'badgeList._id': req.params.id});
+            const foundUser = await User.findOne({'badgeList._id': req.params.id});
             foundUser.badgeList.id(req.params.id).remove();
             await foundUser.save();
             res.redirect(`/users/${req.userId}`);
         }catch(err){
+            console.log(err);
             res.send(err);
         }
     })
