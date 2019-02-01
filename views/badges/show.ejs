@@ -16,7 +16,7 @@
         <h1><%= user.displayName %>'s <%= badge.title %> Badge</h1>
         <ul>
             <% badge.events.forEach((event)=>{ %>
-                <li><%= event.img %> <br>
+                <li><img src="<%= event.img %>" alt="<%= event.img %>"><br>
                 <%= event.description %></li>
             <% })%>
         </ul>
