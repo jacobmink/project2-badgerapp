@@ -40,12 +40,16 @@ main button{
 }
 
 .filter-form{
+    height: 100%;
+    padding-top: 0;
     padding-bottom: 5px;
     border-bottom: 2px solid lightgrey;
 }
 
 .filter-form div{
     display: inline-block;
+    height: 100%;
+    margin-top: 0;
 }
 
 header{

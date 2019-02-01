@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
     <% include ../partials/headmeta %>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <title>Swipe City</title>
 </head>
 <body>
@@ -9,8 +10,9 @@
         <% include ../partials/header %>
     </header>
     <main>
+        <button class="filter-button">Filters</button>
         <section class="filters">
-            <button><h2>Filters</h2></button>
+            
             <form action="/users" class="filter-form">
                 <div>
                     <h3>Gender:</h3>
@@ -39,7 +41,7 @@
                     <% for(let i = 0; i < badges.length; i++) { %>
                         <input type="checkbox" name="badgesWanted" value="<%=badges[i]%>"><%=badges[i]%><br>
                     <% } %>
-                </div>
+                </div><br>
                 
                 <button type="submit">Submit</button>
             </form>
@@ -67,6 +69,6 @@
     <footer>
         <% include ../partials/footer %>
     </footer>   
-    
+    <script src="/js/filtertoggle.js"></script>
 </body>
 </html>
