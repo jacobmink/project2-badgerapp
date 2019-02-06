@@ -99,6 +99,11 @@ router.route('/')
             res.send(err);
         }
     })
+
+
+
+
+
     // post
     .post(async (req,res)=>{
         const password = req.body.password;
@@ -131,6 +136,12 @@ router.route('/')
             res.send(err);
         }
     });
+
+
+
+
+
+
 
 router.route('/:id')
     // show profile
@@ -175,8 +186,33 @@ router.route('/:id')
     // update profile
     .put(async (req,res)=>{
         try{
-            await User.findByIdAndUpdate(req.params.id, req.body);
-            res.redirect(`/users/${req.params.id}`);
+            const current = await User.findByIdAndUpdate(req.params.id, req.body);
+            console.log('user liked? ' +  req.body.like);
+            if (typeof req.body.like !== 'undefined') {
+                const liked = await User.findById(req.body.like.value);
+                current.likedUsers.push(liked); 
+                await current.save(); 
+
+                // if you are in the liked user's likedUser array too
+
+                let matched = false;
+                for (let a = 0; a < liked.likedUsers.length; a++) {
+                    if (liked.likedUsers[a]._id.toString().trim() == current._id.toString().trim()) {
+
+                        matched = true;
+                    }
+
+                
+                }
+
+                res.redirect('/users', {
+                    message: matched
+                })
+            } else {
+                res.redirect(`/users/${req.params.id}`);
+
+            }
+
         }catch(err){
             res.send(err);
         }
@@ -198,9 +234,12 @@ router.route('/:id')
 // edit user profile
 router.route('/:id/edit')
     .get(async (req,res)=>{
+
+
         if(req.session.userId == req.params.id){
             try{
                 const foundUser = await User.findById(req.params.id);
+
                 res.render('users/edit.ejs', {
                     user: foundUser,
                     genderList: genderList,
