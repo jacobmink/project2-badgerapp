@@ -54,6 +54,10 @@
                 <% users.forEach((otherUser)=>{ %>
                     <% if(otherUser !== user) %>
                     <li><a href="/users/<%= otherUser._id %>"><%= otherUser.displayName %></a> <br>
+
+                        <form action="/users/<%= sessionId %>?_method=PUT" method="POST">
+                            <button type="submit" name="like" value="<%= otherUser._id%>"> LIKE </button>    
+                        </form>
                         <%= otherUser.gender %> <br>
                         Age: <%= otherUser.age %> <br>
                         Badges: <% otherUser.badgeList.forEach((badge)=>{ %>
